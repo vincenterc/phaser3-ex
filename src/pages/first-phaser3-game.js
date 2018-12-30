@@ -11,6 +11,13 @@ class FirstPhaser3GamePage extends React.Component {
       width: 800,
       height: 600,
       parent: 'game-root',
+      physics: {
+        default: 'arcade',
+        arcade: {
+          gravity: { y: 300 },
+          debug: false,
+        },
+      },
       scene: {
         preload,
         create,
@@ -22,10 +29,25 @@ class FirstPhaser3GamePage extends React.Component {
 
     function preload() {
       this.load.image('sky', withPrefix('/assets/first-phaser3-game/sky.png'))
+      this.load.image(
+        'platform',
+        withPrefix('/assets/first-phaser3-game/platform.png')
+      )
     }
+
+    let platforms
 
     function create() {
       this.add.image(400, 300, 'sky')
+
+      platforms = this.physics.add.staticGroup()
+      platforms
+        .create(400, 568, 'platform')
+        .setScale(2)
+        .refreshBody()
+      platforms.create(600, 400, 'platform')
+      platforms.create(50, 250, 'platform')
+      platforms.create(750, 220, 'platform')
     }
 
     function update() {}
