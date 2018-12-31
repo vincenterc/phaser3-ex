@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{137:function(a){a.exports={pages:[{componentChunkName:"component---src-pages-index-js",jsonName:"index",path:"/"},{componentChunkName:"component---src-pages-first-phaser-3-game-js",jsonName:"first-phaser-3-game-570",path:"/first-phaser3-game/"}],dataPaths:{"first-phaser-3-game-570":"629/path---first-phaser-3-game-570-7cc-NZuapzHg3X9TaN1iIixfv1W23E",index:"173/path---index-6a9-NZuapzHg3X9TaN1iIixfv1W23E"}}}}]);
+//# sourceMappingURL=pages-manifest-23f1ecfe87880c114678.js.map
