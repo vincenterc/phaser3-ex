@@ -33,9 +33,15 @@ class FirstPhaser3GamePage extends React.Component {
         'platform',
         withPrefix('/assets/first-phaser3-game/platform.png')
       )
+      this.load.spritesheet(
+        'dude',
+        withPrefix('/assets/first-phaser3-game/dude.png'),
+        { frameWidth: 32, frameHeight: 48 }
+      )
     }
 
     let platforms
+    let player
 
     function create() {
       this.add.image(400, 300, 'sky')
@@ -48,6 +54,12 @@ class FirstPhaser3GamePage extends React.Component {
       platforms.create(600, 400, 'platform')
       platforms.create(50, 250, 'platform')
       platforms.create(750, 220, 'platform')
+
+      player = this.physics.add.sprite(100, 450, 'dude')
+      player.setBounce(0.2)
+      player.setCollideWorldBounds(true)
+
+      this.physics.add.collider(player, platforms)
     }
 
     function update() {}
