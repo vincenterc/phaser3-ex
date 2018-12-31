@@ -38,11 +38,15 @@ class FirstPhaser3GamePage extends React.Component {
         withPrefix('/assets/first-phaser3-game/dude.png'),
         { frameWidth: 32, frameHeight: 48 }
       )
+      this.load.image('star', withPrefix('/assets/first-phaser3-game/star.png'))
     }
 
     let platforms
     let player
+    let stars
     let cursors
+    let score = 0
+    let scoreText = ''
 
     function create() {
       this.add.image(400, 300, 'sky')
@@ -80,7 +84,24 @@ class FirstPhaser3GamePage extends React.Component {
 
       cursors = this.input.keyboard.createCursorKeys()
 
+      stars = this.physics.add.group({
+        key: 'star',
+        repeat: 11,
+        setXY: { x: 12, y: 0, stepX: 70 },
+      })
+      stars.children.iterate(function(child) {
+        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8))
+      })
+
+      scoreText = this.add.text(16, 16, 'score: 0', {
+        fontSize: '32px',
+        fill: '#000',
+      })
+
       this.physics.add.collider(player, platforms)
+      this.physics.add.collider(stars, platforms)
+
+      this.physics.add.overlap(player, stars, collectStar, null, this)
     }
 
     function update() {
@@ -98,6 +119,13 @@ class FirstPhaser3GamePage extends React.Component {
       if (cursors.up.isDown && player.body.touching.down) {
         player.setVelocityY(-330)
       }
+    }
+
+    function collectStar(player, star) {
+      star.disableBody(true, true)
+
+      score += 10
+      scoreText.setText(`Score: ${score}`)
     }
   }
 
