@@ -1,7 +1,7 @@
 import React from 'react'
 import { withPrefix } from 'gatsby'
 import styled from 'styled-components'
-import Phaser from 'phaser'
+import Phaser from '../utils/PhaserLoader'
 import PageWrapper from '../components/PageWrapper'
 
 class FirstPhaser3GamePage extends React.Component {
