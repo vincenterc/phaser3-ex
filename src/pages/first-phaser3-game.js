@@ -173,6 +173,10 @@ class FirstPhaser3GamePage extends React.Component {
       player.setTint(0xff0000)
       player.anims.play('turn')
 
+      this.add
+        .text(400, 300, 'Game Over', { fontSize: '48px', color: '#000' })
+        .setOrigin(0.5, 0.5)
+
       gameOver = true
     }
   }
