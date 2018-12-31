@@ -6,6 +6,20 @@ import PageWrapper from '../components/PageWrapper'
 
 class FirstPhaser3GamePage extends React.Component {
   componentDidMount() {
+    this._createGame()
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Title>First Phaser3 Game</Title>
+
+        <div id="game-root" />
+      </Wrapper>
+    )
+  }
+
+  _createGame = () => {
     const config = {
       type: Phaser.AUTO,
       width: 800,
@@ -27,6 +41,15 @@ class FirstPhaser3GamePage extends React.Component {
 
     const game = new Phaser.Game(config)
 
+    let platforms
+    let player
+    let stars
+    let bombs
+    let cursors
+    let score = 0
+    let scoreText = ''
+    let gameOver = false
+
     function preload() {
       this.load.image('sky', withPrefix('/assets/first-phaser3-game/sky.png'))
       this.load.image(
@@ -41,15 +64,6 @@ class FirstPhaser3GamePage extends React.Component {
       this.load.image('star', withPrefix('/assets/first-phaser3-game/star.png'))
       this.load.image('bomb', withPrefix('/assets/first-phaser3-game/bomb.png'))
     }
-
-    let platforms
-    let player
-    let stars
-    let bombs
-    let cursors
-    let score = 0
-    let scoreText = ''
-    let gameOver = false
 
     function create() {
       this.add.image(400, 300, 'sky')
@@ -161,16 +175,6 @@ class FirstPhaser3GamePage extends React.Component {
 
       gameOver = true
     }
-  }
-
-  render() {
-    return (
-      <Wrapper>
-        <Title>First Phaser3 Game</Title>
-
-        <div id="game-root" />
-      </Wrapper>
-    )
   }
 }
 
