@@ -103,6 +103,8 @@ class TurnBasedRPGPage extends React.Component {
           frameRate: 10,
           repeat: -1,
         })
+
+        this.physics.add.collider(this.player, obstacles)
       }
 
       update(time, delta) {
