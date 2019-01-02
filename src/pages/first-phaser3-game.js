@@ -51,18 +51,18 @@ class FirstPhaser3GamePage extends React.Component {
     let gameOver = false
 
     function preload() {
-      this.load.image('sky', withPrefix('/assets/first-phaser3-game/sky.png'))
+      this.load.image('sky', withPrefix('/first-phaser3-game/assets/sky.png'))
       this.load.image(
         'platform',
-        withPrefix('/assets/first-phaser3-game/platform.png')
+        withPrefix('/first-phaser3-game/assets/platform.png')
       )
       this.load.spritesheet(
         'dude',
-        withPrefix('/assets/first-phaser3-game/dude.png'),
+        withPrefix('/first-phaser3-game/assets/dude.png'),
         { frameWidth: 32, frameHeight: 48 }
       )
-      this.load.image('star', withPrefix('/assets/first-phaser3-game/star.png'))
-      this.load.image('bomb', withPrefix('/assets/first-phaser3-game/bomb.png'))
+      this.load.image('star', withPrefix('/first-phaser3-game/assets/star.png'))
+      this.load.image('bomb', withPrefix('/first-phaser3-game/assets/bomb.png'))
     }
 
     function create() {
