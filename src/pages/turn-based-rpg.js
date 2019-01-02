@@ -64,6 +64,24 @@ class TurnBasedRPGPage extends React.Component {
         this.physics.world.bounds.width = map.widthInPixels
         this.physics.world.bounds.height = map.heightInPixels
         this.player.setCollideWorldBounds(true)
+
+        this.cursors = this.input.keyboard.createCursorKeys()
+      }
+
+      update(time, delta) {
+        this.player.body.setVelocity(0)
+
+        if (this.cursors.left.isDown) {
+          this.player.body.setVelocityX(-80)
+        } else if (this.cursors.right.isDown) {
+          this.player.body.setVelocityX(80)
+        }
+
+        if (this.cursors.up.isDown) {
+          this.player.body.setVelocityY(-80)
+        } else if (this.cursors.down.isDown) {
+          this.player.body.setVelocityY(80)
+        }
       }
     }
 
