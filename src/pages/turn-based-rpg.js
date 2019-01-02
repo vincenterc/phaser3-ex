@@ -37,9 +37,34 @@ class TurnBasedRPGPage extends React.Component {
         super('WorldScene')
       }
 
-      preload() {}
+      preload() {
+        this.load.image(
+          'tiles',
+          withPrefix('/turn-based-rpg/assets/map/spritesheet.png')
+        )
+        this.load.tilemapTiledJSON(
+          'map',
+          withPrefix('/turn-based-rpg/assets/map/map.json')
+        )
+        this.load.spritesheet(
+          'player',
+          withPrefix('/turn-based-rpg/assets/RPG_assets.png'),
+          { frameWidth: 16, frameHeight: 16 }
+        )
+      }
 
-      create() {}
+      create() {
+        const map = this.make.tilemap({ key: 'map' })
+        const tiles = map.addTilesetImage('spritesheet', 'tiles')
+        const grass = map.createStaticLayer('Grass', tiles, 0, 0)
+        const obstacles = map.createStaticLayer('Obstacles', tiles, 0, 0)
+        obstacles.setCollisionByExclusion([-1])
+
+        this.player = this.physics.add.sprite(50, 100, 'player', 6)
+        this.physics.world.bounds.width = map.widthInPixels
+        this.physics.world.bounds.height = map.heightInPixels
+        this.player.setCollideWorldBounds(true)
+      }
     }
 
     const config = {
