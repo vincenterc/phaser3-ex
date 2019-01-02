@@ -66,6 +66,10 @@ class TurnBasedRPGPage extends React.Component {
         this.player.setCollideWorldBounds(true)
 
         this.cursors = this.input.keyboard.createCursorKeys()
+
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+        this.cameras.main.startFollow(this.player)
+        this.cameras.main.roundPixels = true // A hack to prevent tiles bleeding – showing border lines on tiles
       }
 
       update(time, delta) {
