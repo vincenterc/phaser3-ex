@@ -7,7 +7,9 @@ class HomePage extends React.Component {
     return (
       <div>
         <h1>Phaser3-ex</h1>
-        <Link to="/first-phaser3-game">First phaser3 game</Link>
+        <Link to="/first-phaser3-game">First Phaser3 Game</Link>
+        <br />
+        <Link to="/turn-based-rpg">Turn-Baesed RPG</Link>
       </div>
     )
   }
