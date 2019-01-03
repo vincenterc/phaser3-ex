@@ -14,7 +14,7 @@ class FirstPhaser3GamePage extends React.Component {
       <Wrapper>
         <Title>First Phaser3 Game</Title>
 
-        <div id="game-root" />
+        <div id="game-container" />
       </Wrapper>
     )
   }
@@ -24,7 +24,7 @@ class FirstPhaser3GamePage extends React.Component {
       type: Phaser.AUTO,
       width: 800,
       height: 600,
-      parent: 'game-root',
+      parent: 'game-container',
       physics: {
         default: 'arcade',
         arcade: {
