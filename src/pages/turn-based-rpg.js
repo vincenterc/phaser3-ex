@@ -14,7 +14,7 @@ class TurnBasedRPGPage extends React.Component {
       <Wrapper>
         <Title>Turn-Based RPG</Title>
 
-        <div id="game-root" />
+        <div id="game-container" />
       </Wrapper>
     )
   }
@@ -163,7 +163,7 @@ class TurnBasedRPGPage extends React.Component {
 
     const config = {
       type: Phaser.AUTO,
-      parent: 'game-root',
+      parent: 'game-container',
       width: 320,
       height: 240,
       zoom: 2,
