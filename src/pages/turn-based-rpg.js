@@ -105,6 +105,22 @@ class TurnBasedRPGPage extends React.Component {
         })
 
         this.physics.add.collider(this.player, obstacles)
+
+        this.spawns = this.physics.add.group({
+          classType: Phaser.GameObjects.Zone,
+        })
+        for (let i = 0; i < 30; i++) {
+          let x = Phaser.Math.RND.between(0, this.physics.world.bounds.width)
+          let y = Phaser.Math.RND.between(0, this.physics.world.bounds.height)
+          this.spawns.create(x, y, 20, 20)
+        }
+        this.physics.add.overlap(
+          this.player,
+          this.spawns,
+          this.onMeetEnemy,
+          false,
+          this
+        )
       }
 
       update(time, delta) {
@@ -136,6 +152,13 @@ class TurnBasedRPGPage extends React.Component {
           this.player.anims.stop()
         }
       }
+
+      onMeetEnemy(player, zone) {
+        zone.x = Phaser.Math.RND.between(0, this.physics.world.bounds.width)
+        zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height)
+
+        this.cameras.main.shake(300)
+      }
     }
 
     const config = {
@@ -149,6 +172,7 @@ class TurnBasedRPGPage extends React.Component {
         default: 'arcade',
         arcade: {
           gravity: { y: 0 },
+          debug: true,
         },
       },
       scene: [BootScene, WorldScene],
