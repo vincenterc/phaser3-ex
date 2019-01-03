@@ -158,6 +158,59 @@ class TurnBasedRPGPage extends React.Component {
         zone.y = Phaser.Math.RND.between(0, this.physics.world.bounds.height)
 
         this.cameras.main.shake(300)
+
+        this.scene.switch('BattleScene')
+      }
+    }
+
+    class BattleScene extends Phaser.Scene {
+      constructor() {
+        super('BattleScene')
+      }
+
+      create() {
+        this.cameras.main.setBackgroundColor('rgba(0, 200, 0, 0.5)')
+        this.scene.run('UIScene')
+
+        let timeEvent = this.time.addEvent({
+          delay: 2000,
+          callback: this.exitBattle,
+          callbackScope: this,
+        })
+
+        this.sys.events.on('wake', this.wake, this)
+      }
+
+      exitBattle() {
+        this.scene.sleep('UIScene')
+        this.scene.switch('WorldScene')
+      }
+
+      wake() {
+        this.scene.run('UIScene')
+        this.time.addEvent({
+          delay: 2000,
+          callback: this.exitBattle,
+          callbackScope: this,
+        })
+      }
+    }
+
+    class UIScene extends Phaser.Scene {
+      constructor() {
+        super('UIScene')
+      }
+
+      create() {
+        this.graphics = this.add.graphics()
+        this.graphics.lineStyle(1, 0xffffff)
+        this.graphics.fillStyle(0x031f4c, 1)
+        this.graphics.strokeRect(2, 150, 90, 100)
+        this.graphics.fillRect(2, 150, 90, 100)
+        this.graphics.strokeRect(95, 150, 90, 100)
+        this.graphics.fillRect(95, 150, 90, 100)
+        this.graphics.strokeRect(188, 150, 130, 100)
+        this.graphics.fillRect(188, 150, 130, 100)
       }
     }
 
@@ -175,7 +228,7 @@ class TurnBasedRPGPage extends React.Component {
           debug: true,
         },
       },
-      scene: [BootScene, WorldScene],
+      scene: [BootScene, WorldScene, BattleScene, UIScene],
     }
 
     const game = new Phaser.Game(config)
