@@ -25,7 +25,29 @@ class TurnBasedRPGPage extends React.Component {
         super('BootScene')
       }
 
-      preload() {}
+      preload() {
+        this.load.image(
+          'tiles',
+          withPrefix('/turn-based-rpg/assets/map/spritesheet.png')
+        )
+        this.load.tilemapTiledJSON(
+          'map',
+          withPrefix('/turn-based-rpg/assets/map/map.json')
+        )
+        this.load.image(
+          'dragonblue',
+          withPrefix('/turn-based-rpg/assets/dragonblue.png')
+        )
+        this.load.image(
+          'dragonorrange',
+          withPrefix('/turn-based-rpg/assets/dragonorrange.png')
+        )
+        this.load.spritesheet(
+          'player',
+          withPrefix('/turn-based-rpg/assets/RPG_assets.png'),
+          { frameWidth: 16, frameHeight: 16 }
+        )
+      }
 
       create() {
         this.scene.start('WorldScene')
@@ -37,21 +59,7 @@ class TurnBasedRPGPage extends React.Component {
         super('WorldScene')
       }
 
-      preload() {
-        this.load.image(
-          'tiles',
-          withPrefix('/turn-based-rpg/assets/map/spritesheet.png')
-        )
-        this.load.tilemapTiledJSON(
-          'map',
-          withPrefix('/turn-based-rpg/assets/map/map.json')
-        )
-        this.load.spritesheet(
-          'player',
-          withPrefix('/turn-based-rpg/assets/RPG_assets.png'),
-          { frameWidth: 16, frameHeight: 16 }
-        )
-      }
+      preload() {}
 
       create() {
         const map = this.make.tilemap({ key: 'map' })
